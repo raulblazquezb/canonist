@@ -161,3 +161,9 @@ cython_debug/
 
 # Sublime Text
 .DS_Store
+
+# Data
+dataset/
+
+# Models
+models/
