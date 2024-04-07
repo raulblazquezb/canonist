@@ -161,3 +161,8 @@ cython_debug/
 
 # Sublime Text
 .DS_Store
+
+dataset/
+*.jpg
+*.
+models/
