@@ -7,9 +7,9 @@ import torchvision
 from torch import nn
 from torch.utils.data import DataLoader
 from torchvision import transforms
-from results import Results
 from tempfile import TemporaryDirectory
 import json
+import wandb
 
 class CNN(nn.Module):
     """Convolutional Neural Network model for image classification."""
@@ -66,7 +66,8 @@ class CNN(nn.Module):
                     optimizer, 
                     criterion, 
                     epochs, 
-                    nepochs_to_save=10):
+                    nepochs_to_save=10,
+                    lr=0.001):
         """Train the model and save the best one based on validation accuracy.
         
         Args:
@@ -80,6 +81,15 @@ class CNN(nn.Module):
         Returns:
             history: A dictionary with the training history.
         """
+        wandb.init(
+            project="raul_blazquez",
+            config={
+                "learning_rate": lr,
+                "architecture": "CNN",
+                "dataset": "Natural Scenes",
+                "epochs": epochs,
+            }
+        )
         with TemporaryDirectory() as temp_dir:
             best_model_path = os.path.join(temp_dir, 'best_model.pt')
             best_accuracy = 0.0
@@ -108,6 +118,7 @@ class CNN(nn.Module):
                       f'Train Loss: {train_loss:.4f}, '
                       f'Train Accuracy: {train_accuracy:.4f}')
                 
+                wandb.log({"train_loss": train_loss, "train_accuracy": train_accuracy})
                 
                 self.eval()
                 valid_loss = 0.0
@@ -122,6 +133,8 @@ class CNN(nn.Module):
                 valid_accuracy /= len(valid_loader.dataset)
                 history['valid_loss'].append(valid_loss)
                 history['valid_accuracy'].append(valid_accuracy)
+
+                wandb.log({"valid_loss": valid_loss, "valid_accuracy": valid_accuracy})
 
                 print(f'Epoch {epoch + 1}/{epochs} - '
                         f'Validation Loss: {valid_loss:.4f}, '

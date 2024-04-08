@@ -167,3 +167,6 @@ dataset/
 
 # Models
 models/
+
+# Weights and Biases
+wandb/
