@@ -28,8 +28,8 @@ def predecir_parte_casa(imagen):
 
 
     transform = transforms.Compose([
+        transforms.Grayscale(num_output_channels=1),  # Convierte la imagen a un tensor
         transforms.ToTensor(),
-        transforms.Grayscale(num_output_channels=3),# Convierte la imagen a un tensor
         #transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])  # Normaliza la imagen
     ])
   # Reemplaza 'tu_imagen.jpg' con la ruta de tu imagen
