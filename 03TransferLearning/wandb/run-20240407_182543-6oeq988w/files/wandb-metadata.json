@@ -1,0 +1,99 @@
+{
+    "os": "Linux-5.15.146.1-microsoft-standard-WSL2-x86_64-with-glibc2.35",
+    "python": "3.10.12",
+    "heartbeatAt": "2024-04-07T16:25:46.385751",
+    "startedAt": "2024-04-07T16:25:43.041959",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "<python with no main file>",
+    "codePathLocal": null,
+    "git": {
+        "remote": "git@github.com:raulblazquezb/canonist.git",
+        "commit": "a882ceb333e2e1b9579b9d5a59a9b837bc6a1220"
+    },
+    "email": "202314794@alu.comillas.edu",
+    "root": "/home/raul/Master_Big_Data/Machine_Learning_II/Deep_Learning/Practicas_DeepLearning_2024",
+    "host": "raul-blazquez",
+    "username": "raul",
+    "executable": "/home/raul/Master_Big_Data/Machine_Learning_II/Deep_Learning/deep_env/bin/python3",
+    "cpu_count": 6,
+    "cpu_count_logical": 12,
+    "cpu_freq": {
+        "current": 2611.198,
+        "min": 0.0,
+        "max": 0.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 2611.198,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2611.198,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2611.198,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2611.198,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2611.198,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2611.198,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2611.198,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2611.198,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2611.198,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2611.198,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2611.198,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2611.198,
+            "min": 0.0,
+            "max": 0.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 1006.853931427002,
+            "used": 19.608386993408203
+        }
+    },
+    "memory": {
+        "total": 7.598865509033203
+    }
+}
