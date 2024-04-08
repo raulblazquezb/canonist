@@ -68,7 +68,7 @@ col01, col02, col03 = st.columns(3)
 with col01:
     st.write('# Deep Learning Lab - Session 1')
 with col03:
-    st.image("/Users/robertokramer/git_repos/personal/DeepLearning_Lab/streamlit/img/icai.png")
+    st.image("streamlit/img/icai.png")
 
 st.write("## Convolution Filters")
 
