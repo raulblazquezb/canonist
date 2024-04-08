@@ -162,7 +162,13 @@ cython_debug/
 # Sublime Text
 .DS_Store
 
+<<<<<<< HEAD
 # Dummy
 dataset/
 
+=======
+dataset/
+*.jpg
+*.
+>>>>>>> main
 models/
