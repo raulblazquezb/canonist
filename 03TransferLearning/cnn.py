@@ -65,7 +65,8 @@ class CNN(nn.Module):
                     optimizer, 
                     criterion, 
                     epochs, 
-                    nepochs_to_save=10):
+                    nepochs_to_save=10,
+                    device="cpu"):
         """Train the model and save the best one based on validation accuracy.
         
         Args:
@@ -90,6 +91,8 @@ class CNN(nn.Module):
                 train_loss = 0.0
                 train_accuracy = 0.0
                 for images, labels in train_loader:
+                    images = images.to(device)
+                    labels = labels.to(device)
                     optimizer.zero_grad()
                     outputs = self(images)
                     loss = criterion(outputs, labels)
@@ -112,6 +115,8 @@ class CNN(nn.Module):
                 valid_loss = 0.0
                 valid_accuracy = 0.0
                 for images, labels in valid_loader:
+                    images = images.to(device)
+                    labels = labels.to(device)
                     outputs = self(images)
                     loss = criterion(outputs, labels)
                     valid_loss += loss.item()
