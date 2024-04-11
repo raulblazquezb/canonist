@@ -7,6 +7,7 @@ from cnn import CNN
 from cnn import load_data
 import torch
 import torchvision.transforms as transforms
+import os
 
 # Cargar la red neuronal entrenada (reemplaza este código con tu implementación)
 def predecir_parte_casa(imagen):
@@ -14,16 +15,21 @@ def predecir_parte_casa(imagen):
     # Esta función debería devolver la parte de la casa predicha (por ejemplo, 'cocina', 'baño', etc.)
     # Por ahora, solo devolveremos un resultado aleatorio como ejemplo
     # Load model
-    train_dir = 'dataset/training'
-    valid_dir = 'dataset/validation'
+    train_dir = '/home/raul/Master_Big_Data/Machine_Learning_II/Deep_Learning/Practicas_DeepLearning_2024/03TransferLearning/dataset/training'
+    test_dir = '/home/raul/Master_Big_Data/Machine_Learning_II/Deep_Learning/Practicas_DeepLearning_2024/03TransferLearning/dataset/test/'
+    if not os.path.exists(test_dir):
+        os.makedirs(test_dir)
 
-    train_loader, valid_loader, num_classes = load_data(train_dir,
-                                                        valid_dir,
+    # Guardar la imagen en disco
+    imagen.save(test_dir + 'Living room/test_image.png')
+
+    train_loader, test_loader, num_classes = load_data(train_dir,
+                                                        test_dir,
                                                         batch_size=32,
                                                         img_size=224)  # ResNet50 requires 224x224 images
-    model_weights = load_model_weights('resnet50-1epoch')
+    model_weights = load_model_weights('/home/raul/Master_Big_Data/Machine_Learning_II/Deep_Learning/Practicas_DeepLearning_2024/03TransferLearning/models/resnet50-20epoch')
     model = CNN(torchvision.models.resnet50(weights=model_weights), num_classes)
-    model.eval()
+    model.load_state_dict(model_weights)
 
 
 
@@ -42,15 +48,12 @@ def predecir_parte_casa(imagen):
     # Agregar una dimensión al tensor para simular un batch de tamaño 1
     image = image.unsqueeze(0)
 
-    # Realizar la predicción
-    with torch.no_grad():
-        outputs = model(image)
+    prediction = model.predict(test_loader)
 
     # Obtener la clase predicha
-    _, predicted = torch.max(outputs, 1)
-    classes = predicted.item()
     classnames = train_loader.dataset.classes
-    return classnames[classes]
+    prediction = classnames[prediction[0]]
+    return prediction
 
 # Configuración de la aplicación
 st.set_page_config(layout="wide", page_title="Predicción de Partes de la Casa")

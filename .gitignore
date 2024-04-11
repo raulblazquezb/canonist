@@ -170,3 +170,5 @@ models/
 
 # Weights and Biases
 wandb/
+
+*.pt
