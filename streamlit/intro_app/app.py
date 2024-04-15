@@ -15,19 +15,22 @@ def predecir_parte_casa(imagen):
     # Esta función debería devolver la parte de la casa predicha (por ejemplo, 'cocina', 'baño', etc.)
     # Por ahora, solo devolveremos un resultado aleatorio como ejemplo
     # Load model
-    train_dir = '/home/raul/Master_Big_Data/Machine_Learning_II/Deep_Learning/Practicas_DeepLearning_2024/03TransferLearning/dataset/training'
-    test_dir = '/home/raul/Master_Big_Data/Machine_Learning_II/Deep_Learning/Practicas_DeepLearning_2024/03TransferLearning/dataset/test/'
+    train_dir = '../../03TransferLearning/dataset/training'
+    test_dir = '../../03TransferLearning/dataset/test'
+
     if not os.path.exists(test_dir):
         os.makedirs(test_dir)
 
-    # Guardar la imagen en disco
-    imagen.save(test_dir + 'Living room/test_image.png')
+    # NOTE
+    # Guardar la imagen en disco (cambia esto para que guarde la imagen que quieras predecir)!!
+    folder = "/Living room"
+    imagen.save(test_dir + folder + '/test_image.png')
 
     train_loader, test_loader, num_classes = load_data(train_dir,
                                                         test_dir,
                                                         batch_size=32,
                                                         img_size=224)  # ResNet50 requires 224x224 images
-    model_weights = load_model_weights('/home/raul/Master_Big_Data/Machine_Learning_II/Deep_Learning/Practicas_DeepLearning_2024/03TransferLearning/models/resnet50-20epoch')
+    model_weights = load_model_weights('../../03TransferLearning/models/resnet50-10epoch_unf_5')
     model = CNN(torchvision.models.resnet50(weights=model_weights), num_classes)
     model.load_state_dict(model_weights)
 
